@@ -1,15 +1,17 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import index
+from rest_framework.routers import DefaultRouter
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-
     url(r'^api/accounts/', include('authentication.urls')),
 ]
 
-urlpatterns += [
-    url(r'^(?P<path>.*)/$', index),
-    url(r'^$', index),
-]
+from manuals.views import ManualViewSet
+
+router = DefaultRouter()
+router.register(r'manuals', ManualViewSet, base_name='manuals')
+
+urlpatterns += router.urls

@@ -22,6 +22,8 @@ INSTALLED_APPS = [
     'authentication',
     'accounts',
 
+    'manuals',
+    'comments',
 
 ]
 
@@ -66,13 +68,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'handbook',
+    #    'USER': 'django',
+    #    'PASSWORD': 'password',
+    #    'HOST': 'localhost',
+    #    'PORT': '',
+    #}
 }
 
 AUTH_PASSWORD_VALIDATORS = [

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>[{{ manual.topic.title | upper }}] {{ manual.title }}</h1>
+    <p>Published {{ manual.created | date:"d M Y H:i" }} by {{ manual.author.email }}</p>
+    <h3>{{ manual.meta }}</h3>
+    {% for tag in manual.tags.all %}
+        {{ tag | capfirst }}
+    {% empty %}
+        No tags
+    {% endfor %}
+    <hr>
+    {% for step in manual.step_set.all %}
+        <h3>{{ step.index }}. {{ step.title }}</h3>
+        <p>{{ step.body }}</p>
+    {% endfor %}
+
+    <hr>
+    <h3>{{ manual.comment_set.count }} comment(s)</h3>
+    <ul>
+        {% for comment in manual.comment_set.all %}
+            <li>
+                <h5>{{ comment.user.email }} | {{ comment.date | date:"d M Y H:i" }}</h5>
+                <p>{{ comment.body }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
