@@ -1,26 +1,15 @@
-from django.views.generic import DetailView
-
 from .models import Manual
-
-
-class ManualDetailView(DetailView):
-    # Debug only!
-    model = Manual
-    template_name = "manuals/detail.html"
-    context_object_name = "manual"
-
-
-# API VIEWS
-
-
 from rest_framework.viewsets import ModelViewSet
 from .serializers import ManualDetailSerializer, ManualListSerializer
+from rest_framework import filters
 
 
 class ManualViewSet(ModelViewSet):
 
     queryset = Manual.objects.all()
     serializer_class = ManualDetailSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ['title', 'meta', 'steps__body', 'steps__title']
 
     action_serializers = {
         'retrieve': ManualDetailSerializer,

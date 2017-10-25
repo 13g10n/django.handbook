@@ -10,7 +10,17 @@ class Comment(models.Model):
         ordering = ["-date"]
 
     user = models.ForeignKey(get_user_model())
-    manual = models.ForeignKey(Manual)
+    manual = models.ForeignKey(Manual, related_name="comments")
 
     date = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
+
+
+class CommentLike(models.Model):
+
+    class Meta:
+        ordering = ["-date"]
+
+    comment = models.ForeignKey(Comment, related_name="likes")
+    user = models.ForeignKey(get_user_model(), related_name="likes")
+    date = models.DateTimeField(auto_now_add=True)
