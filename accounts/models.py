@@ -6,4 +6,3 @@ class User(EmailAbstractUser):
     date_of_birth = models.DateField('Date of birth', null=True, blank=True)
 
     objects = EmailUserManager()
-

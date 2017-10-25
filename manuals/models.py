@@ -25,7 +25,7 @@ class Manual(models.Model):
     meta = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(get_user_model())
+    author = models.ForeignKey(get_user_model(), related_name="manuals")
 
     topic = models.ForeignKey(Topic)
     tags = models.ManyToManyField(Tag, related_name="manuals")
