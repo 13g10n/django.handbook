@@ -1,6 +1,6 @@
 from django.db import models
 
-from .abstract import AuthoredModel
+from utils.models import AuthoredModel
 from .comment import Comment
 
 

@@ -1,8 +1,8 @@
 from django.db import models
-from .abstract import PostModel
 
-from .topic import Topic
+from utils.models import PostModel
 from .tag import Tag
+from .topic import Topic
 
 
 class Manual(PostModel):

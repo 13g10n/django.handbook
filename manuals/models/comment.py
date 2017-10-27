@@ -1,6 +1,6 @@
 from django.db import models
 
-from .abstract import PostModel
+from utils.models import PostModel
 from .manual import Manual
 
 

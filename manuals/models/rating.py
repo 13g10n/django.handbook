@@ -1,6 +1,7 @@
 from django.db import models
+
+from utils.models import AuthoredModel
 from .manual import Manual
-from .abstract import AuthoredModel
 
 
 class Rating(models.Model):
