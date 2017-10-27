@@ -6,6 +6,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ALLOWED_HOSTS = ['*',]
 
+AUTH_USER_MODEL = 'accounts.User'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -19,13 +21,12 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'authentication',
     'accounts',
+    'channels',
 
     'manuals',
     'badges',
-
+    'notifications',
 ]
-
-AUTH_USER_MODEL = 'accounts.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -33,6 +34,13 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     )
+}
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "ROUTING": "config.routing.channel_routing",
+    },
 }
 
 MIDDLEWARE = [

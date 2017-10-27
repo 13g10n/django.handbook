@@ -8,4 +8,4 @@ class TestView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(TestView, self).get_context_data()
 
-        context["user"] = get_user_model().objects.get(pk=1)
+

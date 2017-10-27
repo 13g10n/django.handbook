@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Manual, Tag, Step, Topic, Rating, Like, UserRate
+from .models import Manual, Tag, Step, Topic, Rating, Like, UserRate, StepAttachment
 
 admin.site.register(Manual)
 admin.site.register(Step)
@@ -9,3 +9,4 @@ admin.site.register(Tag)
 admin.site.register(Like)
 admin.site.register(Rating)
 admin.site.register(UserRate)
+admin.site.register(StepAttachment)

@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SlugRelatedField
 
 from ..models import Manual
 
@@ -21,7 +21,8 @@ class ManualDetailSerializer(ModelSerializer):
     author = AccountSerializer(read_only=True)
     rating = RatingSerializer()
     steps = StepSerializer(many=True)
+    tags = SlugRelatedField(many=True, read_only=True, slug_field='word')
 
     class Meta:
         model = Manual
-        fields = ('id', 'title', 'created', 'topic', 'rating', 'author', 'steps', 'content')
+        fields = ('id', 'title', 'created', 'topic', 'rating', 'author', 'tags', 'steps', 'content')
