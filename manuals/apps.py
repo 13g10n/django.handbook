@@ -6,3 +6,4 @@ class ManualsConfig(AppConfig):
 
     def ready(self):
         import badges.signals
+        import manuals.signals

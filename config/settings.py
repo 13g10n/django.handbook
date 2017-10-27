@@ -6,8 +6,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ALLOWED_HOSTS = ['*',]
 
-AUTH_USER_MODEL = 'accounts.User'
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,10 +21,11 @@ INSTALLED_APPS = [
     'accounts',
 
     'manuals',
-    'comments',
     'badges',
 
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
 

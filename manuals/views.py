@@ -9,7 +9,7 @@ class ManualViewSet(ModelViewSet):
     queryset = Manual.objects.all()
     serializer_class = ManualDetailSerializer
     filter_backends = (filters.SearchFilter,)
-    search_fields = ['title', 'meta', 'steps__body', 'steps__title']
+    search_fields = ['title', 'content', 'steps__content', 'steps__title']
 
     action_serializers = {
         'retrieve': ManualDetailSerializer,

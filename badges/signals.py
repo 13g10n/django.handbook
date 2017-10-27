@@ -6,5 +6,5 @@ from manuals.models import Manual
 
 @receiver(post_save, sender=Manual)
 def manual_created(sender, instance, created, **kwargs):
-    if created and instance.author.manuals.count() == 1:
+    if created and instance.author.manual_set.count() == 1:
         FirstManualBadge.objects.create(user=instance.author)

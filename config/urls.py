@@ -12,12 +12,11 @@ urlpatterns = [
     url(r'^api/accounts/', include('authentication.urls')),
 ]
 
+
 from manuals.views import ManualViewSet
-from comments.views import CommentViewSet
 
 router = DefaultRouter()
 router.register(r'api/manuals', ManualViewSet, base_name='manuals')
-router.register(r'api/comments', CommentViewSet, base_name='comments')
 
 
 urlpatterns += router.urls
