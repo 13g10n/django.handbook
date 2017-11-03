@@ -8,7 +8,7 @@ class NotificationConsumer(WebsocketConsumer):
     http_user = True
 
     def connection_groups(self, **kwargs):
-        return ["test"]
+        return []
 
     def connect(self, message, **kwargs):
         request = AsgiRequest(message)
