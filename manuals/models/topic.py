@@ -2,8 +2,18 @@ from django.db import models
 
 COLORS = (
     ("red", "Red"),
+    ("orange", "Orange"),
+    ("yellow", "Yellow"),
+    ("olive", "Olive"),
+    ("green", "Green"),
+    ("teal", "Teal"),
     ("blue", "Blue"),
-    ("green", "Green")
+    ("violet", "Violet"),
+    ("purple", "Purple"),
+    ("pink", "Pink"),
+    ("brown", "Brown"),
+    ("grey", "Grey"),
+    ("black", "Black"),
 )
 
 

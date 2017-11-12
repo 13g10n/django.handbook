@@ -10,10 +10,12 @@ from .step import StepSerializer
 
 class ManualListSerializer(ModelSerializer):
     topic = TopicSerializer()
+    author = AccountSerializer(read_only=True)
+    rating = RatingSerializer()
 
     class Meta:
         model = Manual
-        fields = ('id', 'title', 'created', 'topic', 'content')
+        fields = ('id', 'title', 'created', 'topic', 'content', 'author', 'rating', 'cover')
 
 
 class ManualDetailSerializer(ModelSerializer):

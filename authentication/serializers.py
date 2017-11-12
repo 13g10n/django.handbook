@@ -36,4 +36,4 @@ class PasswordChangeSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('email', 'first_name', 'last_name')
+        fields = ('pk', 'email', 'first_name', 'last_name', 'language', 'avatar')
