@@ -1,5 +1,7 @@
-from rest_framework.serializers import ModelSerializer, SlugRelatedField
+from rest_framework.serializers import ModelSerializer, SlugRelatedField, SerializerMethodField
 
+from manuals.models import Topic
+from manuals.serializers.comment import CommentSerializer
 from ..models import Manual
 
 from accounts.serializers import AccountSerializer
@@ -15,16 +17,24 @@ class ManualListSerializer(ModelSerializer):
 
     class Meta:
         model = Manual
-        fields = ('id', 'title', 'created', 'topic', 'content', 'author', 'rating', 'cover')
+        fields = ('id', 'title', 'created', 'topic', 'content', 'author', 'rating')
 
 
 class ManualDetailSerializer(ModelSerializer):
     topic = TopicSerializer()
     author = AccountSerializer(read_only=True)
-    rating = RatingSerializer()
-    steps = StepSerializer(many=True)
-    tags = SlugRelatedField(many=True, read_only=True, slug_field='word')
+    rating = RatingSerializer(read_only=True)
+    steps = StepSerializer(many=True, required=False)
+    tags = SlugRelatedField(many=True, read_only=True, slug_field='word', required=False)
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Manual
-        fields = ('id', 'title', 'created', 'topic', 'rating', 'author', 'tags', 'steps', 'content')
+        fields = ('id', 'title', 'created', 'topic',
+                  'rating', 'author', 'tags', 'steps', 'content', 'cover', 'comments')
+
+    def create(self, validated_data):
+        # dirty!
+        topic = Topic.objects.get(title=validated_data.pop('topic')['title'])
+        manual = Manual.objects.create(topic=topic, **validated_data)
+        manual.save()

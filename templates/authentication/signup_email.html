@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <title>Thank you for signing up!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
 </head>
-<body>
-<p>
-Verify your email address by clicking on this link:<br>
-<a href="http://127.0.0.1:8000/api/accounts/signup/verify/?code={{ code }}">http://127.0.0.1:8000/signup/verify/?code={{ code }}</a>
-</p>
+<body style="background-color: #3B91F9; color: white; text-align: center; padding: 20px; box-sizing: border-box; min-height: 300px;">
+    <h1>HandBook</h1>
+    <p style="color: white; font-size: 16px">
+        Welcome to HandBook - service of manuals! All you need to start is click 'activate' button below and here we go!
+    </p>
+    <a class="ui inverted button" href="http://127.0.0.1:4200/activate?code={{ code }}"
+    style="color: white;">ACTIVATE</a>
+
 </body>
 </html>

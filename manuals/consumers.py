@@ -1,10 +1,11 @@
 from channels import Group
 from channels.generic.websockets import WebsocketConsumer
 from channels.handler import AsgiRequest
-from rest_framework.authtoken.models import Token
+
+from manuals.models import Manual
 
 
-class NotificationConsumer(WebsocketConsumer):
+class CommentsConsumer(WebsocketConsumer):
     http_user = True
 
     def connection_groups(self, **kwargs):
@@ -12,10 +13,11 @@ class NotificationConsumer(WebsocketConsumer):
 
     def connect(self, message, **kwargs):
         request = AsgiRequest(message)
-        token = request.GET.get("token", None)
-        user = Token.objects.get(key=token).user
-        if user:
-            Group("notification-{0}".format(user.pk)).add(message.reply_channel)
+        manual_id = request.GET.get("post", None)
+        post = Manual.objects.get(id=manual_id)
+        if post:
+            print("Connected now to 'post-" + str(post.pk) + "' channel")
+            Group("post-{0}".format(post.pk)).add(message.reply_channel)
             self.message.reply_channel.send({"accept": True})
 
     def receive(self, text=None, bytes=None, **kwargs):
